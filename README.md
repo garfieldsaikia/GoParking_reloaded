@@ -6,3 +6,11 @@ OVERALL SCENARIO
 2. There are 200, 200 and 100 parking spaces for small, medium and large cars, respectively.
 3. A small-sized car can be allocated a SMALL, MEDIUM or LARGE parking spot. A medium-sized car can be allocated a MEDIUM or LARGE parking    spot. A large-sized car can only be allocated a LARGE parking spot.
 4. A small or medium-sized car will only be given a parking spot larger than its size, when all the parking spots of its corresponding        size are occupied.
+
+
+INPUT
+1. Entry Gate - A, B or C
+2. Car Size - SMALL, MEDIUM, LARGE
+
+OUTPUT
+1. Parking slot
