@@ -1,0 +1,55 @@
+package name;
+
+enum Gate {A, B, C}
+enum Size
+{
+	SMALL(300), MEDIUM(300), LARGE(100);
+	int totalSlot;
+	Size(int totalSlot)
+	{
+		this.totalSlot = totalSlot;
+	}
+}
+
+class Entry
+{
+	String parkName;
+	char carSize, gateName;
+	long start, end, diff;
+	double duration;
+	Entry(String parkName, char gateName, char carSize)
+	{
+		this.carSize = carSize;
+		this.gateName = gateName;
+		this.parkName = parkName;
+		//start = System.currentTimeMillis();
+	}	
+	void exit()
+	{
+		//end = System.currentTimeMillis();
+		//diff = end - start;
+		duration =(double) diff/(1000*60*60);
+		priceCalc(2.1);
+	}
+	void priceCalc(double duration)
+	{
+		double price;
+		if(duration<=1.0)
+			price=40;
+		else
+		{
+			price=40+(Math.ceil(duration-1)*10);
+		}
+		System.out.println("Price : " +price);
+	}
+}
+
+public class Main 
+{
+	public static void main(String[] args) throws InterruptedException
+	{
+		 Entry car1 = new Entry("Whitefield",'A','S');
+		 //car1.wait(10000);
+		 car1.exit();
+	}
+}
