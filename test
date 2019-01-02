@@ -1,55 +1,137 @@
 package name;
 
-enum Gate {A, B, C}
-enum Size
+import java.util.*;
+import java.awt.*;
+
+class Location
 {
-	SMALL(300), MEDIUM(300), LARGE(100);
-	int totalSlot;
-	Size(int totalSlot)
+	private Point carPoint;
+	protected Point parkPoint;
+	private static int smallSlots, mediumSlots, largeSlots;
+	private int smallRate, mediumRate, largeRate;
+	
+	Location()
 	{
-		this.totalSlot = totalSlot;
+		smallSlots = mediumSlots = largeSlots = 0;
+		smallRate = 40;
+		mediumRate = 50;
+		largeRate = 70;
+	}
+	public void setLocation(int x, int y)
+	{
+		carPoint = new Point(x,y);
+	}
+	public void setSlotSize(int small, int medium, int large)
+	{
+		smallSlots = small;
+		mediumSlots = medium;
+		largeSlots = large;
+	}
+	public void setSlotRate(int smallRate, int mediumRate, int largeRate)
+	{
+		this.smallRate = smallRate;
+		this.mediumRate = mediumRate;
+		this.largeRate = largeRate;
 	}
 }
 
-class Entry
+class Marathahalli extends Location
 {
-	String parkName;
-	char carSize, gateName;
-	long start, end, diff;
-	double duration;
-	Entry(String parkName, char gateName, char carSize)
+	Marathahalli(int x, int y)
 	{
-		this.carSize = carSize;
-		this.gateName = gateName;
-		this.parkName = parkName;
-		//start = System.currentTimeMillis();
-	}	
-	void exit()
-	{
-		//end = System.currentTimeMillis();
-		//diff = end - start;
-		duration =(double) diff/(1000*60*60);
-		priceCalc(2.1);
+		parkPoint = new Point(x,y);
 	}
-	void priceCalc(double duration)
+}
+
+class AECS extends Location
+{
+	AECS(int x, int y)
 	{
-		double price;
-		if(duration<=1.0)
-			price=40;
-		else
-		{
-			price=40+(Math.ceil(duration-1)*10);
-		}
-		System.out.println("Price : " +price);
+		parkPoint = new Point(x,y);
+	}
+}
+
+class Vydehi extends Location
+{
+	Vydehi(int x, int y)
+	{
+		parkPoint = new Point(x,y);
+	}
+}
+
+class ITPL extends Location
+{
+	ITPL(int x, int y)
+	{
+		parkPoint = new Point(x,y);
+	}
+}
+
+class Kadugodi extends Location
+{
+	Kadugodi(int x, int y)
+	{
+		parkPoint = new Point(x,y);
+	}
+}
+
+class Car 
+{
+	protected Location loc = new Location();
+}
+
+class SmallCar extends Car
+{
+	SmallCar(int x, int y)
+	{
+		loc.setLocation(x, y);
+	}
+}
+
+class MediumCar extends Car
+{
+	MediumCar(int x, int y)
+	{
+		loc.setLocation(x, y);
+	}
+}
+
+class LargeCar extends Car
+{
+	LargeCar(int x, int y)
+	{
+		loc.setLocation(x, y);
 	}
 }
 
 public class Main 
 {
-	public static void main(String[] args) throws InterruptedException
+	public static void main(String[] args) throws InterruptedException 
 	{
-		 Entry car1 = new Entry("Whitefield",'A','S');
-		 //car1.wait(10000);
-		 car1.exit();
+		setInitialVal();		
+		SmallCar car1 = new SmallCar(100,200);
+		//car1.loc.getLocation();
+		
+	}
+	
+	public static void setInitialVal()
+	{
+		Marathahalli mara = new Marathahalli(444,57); //sending location co-ordinates (x,y) as arguments
+		mara.setSlotSize(300,300,100); //setting slot size of small, medium and large slots, respectively
+		mara.setSlotRate(20,20,30);
+		
+		AECS aecs = new AECS(663, 126);
+		aecs.setSlotSize(200,100,100);
+		aecs.setSlotRate(10,20,40);
+		
+		Vydehi vyde = new Vydehi(907, 324);
+		vyde.setSlotSize(200,200,50);
+		vyde.setSlotRate(40,50,60);
+		
+		ITPL itpl = new ITPL(1020,491);
+		itpl.setSlotSize(300, 200, 200);
+		
+		Kadugodi kadu = new Kadugodi(1205, 536);
+		kadu.setSlotSize(200, 100, 100);
 	}
 }
